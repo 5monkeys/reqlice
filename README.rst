@@ -12,7 +12,7 @@ Installation
 
 .. code-block:: bash
 
-    pip install reqlice
+    pip install -e git+https://github.com/5monkeys/reqlice#egg=reqlice
 
 -----
 Usage
