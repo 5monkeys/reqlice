@@ -34,7 +34,7 @@ def parse_license(info):
 
 
 def is_pypi_requirement(requirement):
-    return requirement.req and len(requirement.req.specs)
+    return requirement.req and not requirement.link
 
 
 def parse_requirements(path_to_requirements):
@@ -102,7 +102,7 @@ class Reqlice:
 
     def __init__(self, target, out=sys.stdout, err=sys.stderr):
         assert os.path.isfile(target), \
-            'First argument to Reqlice should be a path to a requirements file'
+            'Could not find {!r} on filesystem'.format(target)
         self.target = target
         self.out = out
         self.err = err
