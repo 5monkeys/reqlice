@@ -22,7 +22,7 @@ def get_requirements(filename):
 
 setup(
     name=name,
-    version='0.8.0',
+    version='1.0.0',
     url='https://github.com/5monkeys/reqlice',
     license='MIT',
     description='Fetches and annotates the license of pip requirements.',
