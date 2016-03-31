@@ -36,10 +36,10 @@ class PackageFetchTask(asyncio.Task):
         return None
 
 
-async def fetch_packages(deps):
+async def fetch_packages(packages):
     """ Fetch many packages from pypi
 
-    :param deps: ['package name', ..]
+    :param packages: ['package name', ..]
     :return list of PackageFetchTasks, which are done when returned
     """
     # Limit the maximum number of active requests
@@ -48,7 +48,7 @@ async def fetch_packages(deps):
     with aiohttp.ClientSession(loop=loop, connector=connector) as session:
         tasks = [
             PackageFetchTask(session, package_name, loop=loop)
-            for package_name in deps
+            for package_name in packages
         ]
 
         # PROGRESS BAR, SUCH IMPORTANCE
