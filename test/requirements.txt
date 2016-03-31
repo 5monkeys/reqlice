@@ -10,7 +10,7 @@ django-bananas==1.0.9b4
 django-enumfield==1.2
 django-jinja==1.4.1
 django-pgjson==0.2.0
-django-compressor==2.0
+django-compressor<2.0,>1.0
 django-pylibmc==0.6.0
 elasticsearch==1.6.0
 elasticsearch-dsl==0.0.9
@@ -37,3 +37,5 @@ djangorestframework==3.3.3
 # Djedi optional dependencies
 djedi-cms-jinja2==2.0.1
 Markdown==2.6.2
+git+https://github.com/mariocesar/sorl-thumbnail.git@master#egg=sorl_thumbnail
+https://github.com/jezdez-archive/django-discover-runner/archive/0.4.zip

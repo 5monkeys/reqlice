@@ -1,10 +1,10 @@
-=======================================================
+=======
 reqlice
-=======================================================
+=======
 
 Annotate your requirements with the license of each requirement.
 Prints the updated requirements file to stdout. Pipe it as you see fit.
-At the moment it can only read requirements in the form :code:`package==version`, no :code:`>` or :code:`,` etc.
+Requires Python 3.5 or greater.
 
 ------------
 Installation

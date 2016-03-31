@@ -30,7 +30,7 @@ setup(
     py_modules=['reqlice'],
     entry_points={
         'console_scripts': [
-            'reqlice = reqlice:main'
+            'reqlice = reqlice:cli'
         ]
     },
     install_requires=get_requirements('requirements.txt'),
