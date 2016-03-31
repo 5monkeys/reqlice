@@ -23,9 +23,9 @@ To stdout:
 .. code-block:: bash
 
     $ reqlice requirements.txt
-    Babel==1.3                        # BSD License
-    billiard==3.3.0.20                # BSD License
-    celery==3.1.23                    # BSD License
+    Babel==1.3                        # BSD License  # [license] OSI-Approved: BSD License, BSD
+    billiard==3.3.0.20                # BSD License  # [license] OSI-Approved: BSD License, BSD
+    celery==3.1.23                    # BSD License  # [license] OSI-Approved: BSD License, BSD
 
 Pipe to file:
 
