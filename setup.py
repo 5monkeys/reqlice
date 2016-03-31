@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 from os import path
 from pkg_resources import parse_requirements
-from setuptools import setup
+from setuptools import setup, find_packages
 
 name = 'reqlice'  # PyPI name
 here = path.dirname(path.abspath(__file__))
@@ -27,7 +27,7 @@ setup(
     license='MIT',
     description='Fetches and annotates the license of pip requirements.',
     long_description=long_description,
-    py_modules=['reqlice'],
+    packages=find_packages(include='reqlice'),
     entry_points={
         'console_scripts': [
             'reqlice = reqlice:cli'
