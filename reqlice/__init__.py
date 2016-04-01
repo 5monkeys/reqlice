@@ -59,8 +59,11 @@ class Reqlice:
 
             lines.append((line, license))
 
+        # Specify default=0 so as no to break when we have no licenses,
+        # comment_startpoint will not be used in that case
         comment_startpoint = max(
-            len(line) for line, license in lines if license
+            (len(line) for line, license in lines if license),
+            default=0
         ) + 2
 
         for line, license in lines:
