@@ -3,7 +3,8 @@ from io import StringIO
 
 from reqlice import Reqlice
 from reqlice.license import parse_license
-from .data import CLASSIFIERS, SMALL_FILE_DONE, PACKAGE_LICENSE_DICT
+
+from .data import CLASSIFIERS, PACKAGE_LICENSE_DICT, SMALL_FILE_DONE
 
 test_file = os.path.join(os.path.dirname(__file__), 'small.txt')
 

@@ -1,5 +1,5 @@
-from reqlice.license import License
 from reqlice import comment_start_tag
+from reqlice.license import License
 
 PACKAGE_LICENSE_DICT = {'django-compressor': License(name='MIT License', osi_approved=True), 'asana': License(name='MIT License', osi_approved=True), 'pyquery': License(name='BSD', osi_approved=True), 'pylibmc': License(name='3-clause BSD <http://www.opensource.org/licenses/bsd-license.php>', osi_approved=True), 'elasticsearch': License(name='Apache Software License', osi_approved=True), 'django-bananas': License(name='UNKNOWN', osi_approved=False), 'Jinja2': License(name='BSD License', osi_approved=True), 'newrelic': License(name='Other/Proprietary License', osi_approved=False), 'Django': License(name='BSD License', osi_approved=True), 'scikit-learn': License(name='new BSD', osi_approved=True), 'jsonfield': License(name='MIT', osi_approved=True), 'logcolor': License(name='UNKNOWN', osi_approved=False), 'dropbox': License(name='Copyright (c) 2015 Dropbox Inc., http://www.dropbox.com/', osi_approved=False), 'requests-oauthlib': License(name='ISC', osi_approved=True)}  # noqa
 SMALL_FILE_DONE = """
