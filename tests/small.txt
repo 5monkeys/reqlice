@@ -5,6 +5,8 @@ elasticsearch==1.6.0
 Jinja2==2.8.0
 jsonfield==1.0.3  # Comment
 logcolor==1.0.1
+
+# Anotha comment
 pylibmc
 pyquery==1.2.9
 requests-oauthlib==0.5.0

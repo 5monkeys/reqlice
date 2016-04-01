@@ -177,10 +177,11 @@ def parse_license(info):
     license_str = ', '.join(licenses)
 
     other_license = (info.get('license') or '').split('\n')[0]
-    if not license_str or license_str == 'OSI Approved':
-        license_str = other_license
-    elif other_license and other_license != 'UNKNOWN':
-        license_str = '{}, {}'.format(license_str, other_license)
+    if other_license:
+        if not license_str or license_str == 'OSI Approved':
+            license_str = other_license
+        elif other_license != 'UNKNOWN' and other_license not in license_str:
+            license_str = '{}, {}'.format(license_str, other_license)
 
     if license_str:
         osi_approved = any('OSI Approved' in classifier

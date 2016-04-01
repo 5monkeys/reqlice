@@ -25,6 +25,8 @@ setup(
     version='1.0.0',
     url='https://github.com/5monkeys/reqlice',
     license='MIT',
+    author='Akseli Nelander',
+    author_email='akseli@5monkeys.se',
     description='Fetches and annotates the license of pip requirements.',
     long_description=long_description,
     packages=find_packages(include='reqlice'),
