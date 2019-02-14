@@ -31,4 +31,4 @@ Pipe to file:
 
 .. code-block:: bash
 
-    $ reqlice requirements.txt 1> updated_requirements.txt
+    $ reqlice requirements.txt > updated_requirements.txt
