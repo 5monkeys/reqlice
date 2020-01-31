@@ -9,12 +9,11 @@ from reqlice.package import fetch_packages
 from reqlice.requirement import get_valid_pypi_requirement, parse_requirements
 
 loop = asyncio.get_event_loop()
-comment_start_tag = '# [license] '
-comment_start_re = re.compile(re.escape(comment_start_tag) + '.+')
+comment_start_tag = "# [license] "
+comment_start_re = re.compile(re.escape(comment_start_tag) + ".+")
 
 
 class Reqlice:
-
     def __init__(self, target, out=sys.stdout, err=sys.stderr):
         """
         :param target: 'path/to/requirements.txt'
@@ -31,10 +30,32 @@ class Reqlice:
     def error(self, *what):
         print(*what, file=self.err)
 
+    def _parse(self, reqs):
+        _parsed = []
+        for req in reqs.splitlines():
+            _req = req.strip()
+            if _req:
+                if _req.startswith("-r"):
+                    _parsed += self.read_file(
+                        os.path.join(
+                            os.path.dirname(self.target), _req.partition(" ")[-1]
+                        )
+                    )
+                    continue
+                # Skip comments
+                elif _req.startswith("#"):
+                    continue
+                _parsed.append(_req)
+
+        return _parsed
+
+    def read_file(self, filepath):
+        with open(filepath) as f:
+            return self._parse(f.read())
+
     def read_target(self):
         if os.path.isfile(self.target):
-            with open(self.target) as f:
-                return f.read()
+            return self.read_file(self.target)
 
         # Assume string
         return self.target
@@ -48,36 +69,39 @@ class Reqlice:
         lines = []
 
         # First pass, fetch requirement, strip line
-        for line in content.splitlines():
-            line = comment_start_re.sub('', line).strip()
+        for line in content:
+            line = comment_start_re.sub("", line).strip()
             requirement = get_valid_pypi_requirement(line)
             if requirement is None:
                 license = None
             else:
-                package_name = requirement.req.project_name
+                try:
+                    package_name = requirement.req.project_name
+                except AttributeError:
+                    package_name = requirement.req.name
+
                 license = package_license_dict.get(package_name)
 
             lines.append((line, license))
 
         # Specify default=0 so as no to break when we have no licenses,
         # comment_startpoint will not be used in that case
-        comment_startpoint = max(
-            (len(line) for line, license in lines if license),
-            default=0
-        ) + 2
+        comment_startpoint = (
+            max((len(line) for line, license in lines if license), default=0) + 2
+        )
 
         for line, license in lines:
             if license is None:
                 self.write(line)
                 continue
 
-            padding = ' ' * (comment_startpoint - len(line))
+            padding = " " * (comment_startpoint - len(line))
 
-            output = '{line}{padding}{comment_start}{license}'.format(
+            output = "{line}{padding}{comment_start}{license}".format(
                 line=line,
                 padding=padding,
                 comment_start=comment_start_tag,
-                license=license
+                license=license,
             )
             self.write(output)
 
@@ -92,10 +116,10 @@ class Reqlice:
             json_data = task.result()
 
             if json_data is None:
-                self.error('Could not fetch info for package:', package_name)
+                self.error("Could not fetch info for package:", package_name)
                 continue
 
-            info = json_data['info']
+            info = json_data["info"]
             license = parse_license(info)
 
             if license:
@@ -114,11 +138,12 @@ class Reqlice:
 
 def cli():
     if len(sys.argv) != 2:
-        print('Usage: reqlice path/to/requirements.txt')
+        print("Usage: reqlice path/to/requirements.txt")
         sys.exit(1)
 
     path_to_requirements = sys.argv[1]
     Reqlice(path_to_requirements).run()
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     cli()
