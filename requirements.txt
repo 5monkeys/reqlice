@@ -1,2 +1,2 @@
-aiohttp==0.21.5
+aiohttp==3.7.4
 tqdm==3.8.0
